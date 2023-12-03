@@ -6,5 +6,10 @@
 </head>
 <body>
 <h3>Lista przepisów</h3>
+{% for r in recipes %}
+    <p>r.title</p>
+    <p>r.description</p>
+    <p>r.category</p>
+{% endfor %}
 </body>
 </html>
