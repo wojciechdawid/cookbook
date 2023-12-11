@@ -2,7 +2,7 @@ from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 
-from .models import Post
+from .models import Post, Comment
 from .services import PostService as service
 
 
@@ -34,7 +34,18 @@ def add_post(request) -> HttpResponse:
         {}
     )
 
+
+@login_required()
 def post_details(request, id: int) -> HttpResponse:
+    if request.method == "POST":
+        author = request.user
+        text = request.POST.get("comment_text")
+        Comment.objects.create(
+            post=Post.objects.get(id=id),
+            author=author,
+            text=text
+        )
+
     return render(
         request,
         "posts/post_details.html",

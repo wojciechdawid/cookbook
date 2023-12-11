@@ -12,6 +12,24 @@
     <p>Author: {{ post_details.author }}</p>
     <p>Created_at: {{ post_details.created_at }}</p>
     <p>Published:{{ post_details.published }}</p>
+<h5>Comments:</h5>
+{% for p in post_details.comments.all %}
+    <p>Author: {{ p.author }}</p>
+    <p>Text: {{ p.text }}</p>
+{% endfor %}
+
+<h4> Dodaj komentarz:</h4>
+<form method="POST">
+    {% csrf_token %}
+    <p>
+    <label for="c_text">Text</label>
+    <input type="text" id="c_text" name="comment_text">
+    </p>
+    <p>
+    <input type="submit" value="Send">
+    </p>
+
+</form>
 
 <a href="{% url 'posts:display_post' %}"><input type=button value="Previous Page"></a>
 </body>

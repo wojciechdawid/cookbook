@@ -1,10 +1,9 @@
 from django.contrib import admin
-from .models import Recipe
+from .models import Recipe, Category
 
 
-@admin.register(Recipe)
 class RecipeAdmin(admin.ModelAdmin):
-    list_display = ["id", "title", "short_description"]
+    list_display = ["id", "title", "short_description", "category"]
 
     @staticmethod
     def short_description(obj):
@@ -16,3 +15,10 @@ class RecipeAdmin(admin.ModelAdmin):
             return self.list_display
         return ["title"]
 
+
+class CategoryAdmin(admin.ModelAdmin):
+    pass
+
+
+admin.site.register(Recipe, RecipeAdmin)
+admin.site.register(Category, CategoryAdmin)
