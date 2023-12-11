@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Post details</title>
+</head>
+<body>
+<h4>Szczegóły postu nr {{ post_details.id }}</h4>
+
+    <p>Title: {{ post_details.title }}</p>
+    <p>Content: {{ post_details.content }}</p>
+    <p>Author: {{ post_details.author }}</p>
+    <p>Created_at: {{ post_details.created_at }}</p>
+    <p>Published:{{ post_details.published }}</p>
+
+<a href="{% url 'posts:display_post' %}"><input type=button value="Previous Page"></a>
+</body>
+</html>

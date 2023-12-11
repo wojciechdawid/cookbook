@@ -1,11 +1,11 @@
 from django.http import HttpResponse
 from django.shortcuts import render
 
-from recipes.models import Recipe
+from .services import NormalRecipeService as service
 
 
 def list(request) -> HttpResponse:
-    results = Recipe.objects.all()
+    results = service.list()
     return render(
         request=request,
         template_name="recipes/recipes.html",
