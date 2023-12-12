@@ -35,13 +35,13 @@ def add_post(request) -> HttpResponse:
     )
 
 
-@login_required()
 def post_details(request, id: int) -> HttpResponse:
     if request.method == "POST":
         author = request.user
         text = request.POST.get("comment_text")
         Comment.objects.create(
-            post=Post.objects.get(id=id),
+            # post=Post.objects.get(id=id),
+            post_id=id,
             author=author,
             text=text
         )

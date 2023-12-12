@@ -1,6 +1,7 @@
 from django.http import HttpResponse
 from django.shortcuts import render
 
+from .models import Recipe
 from .services import NormalRecipeService as service
 
 
@@ -13,7 +14,7 @@ def list(request) -> HttpResponse:
     c.recipes.all() # pod warunkiem, że mamy ustawione related_name
     """
 
-    results = service.list()
+    results = Recipe.objects.all()
     return render(
         request=request,
         template_name="recipes/recipes.html",

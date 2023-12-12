@@ -18,18 +18,20 @@
     <p>Text: {{ p.text }}</p>
 {% endfor %}
 
+{% if user.is_authenticated %}
 <h4> Dodaj komentarz:</h4>
 <form method="POST">
     {% csrf_token %}
     <p>
     <label for="c_text">Text</label>
-    <input type="text" id="c_text" name="comment_text">
+        <textarea id="c_text" placeholder="Wpisz tresc" name="comment_text" rows="4" cols="50"></textarea>
     </p>
     <p>
     <input type="submit" value="Send">
     </p>
 
 </form>
+{% endif %}
 
 <a href="{% url 'posts:display_post' %}"><input type=button value="Previous Page"></a>
 </body>

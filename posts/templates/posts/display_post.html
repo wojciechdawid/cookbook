@@ -8,12 +8,7 @@
 <div>
 <h4>Lista postów:</h4>
     {% for p in posts %}
-        <p>{{ p.id }}. <a href="{% url 'posts:details' p.id %}">{{ p.title }}</a></p>
-        <p>Content: {{ p.content }}</p>
-        <p>Author: {{ p.author }}</p>
-        <p>Created_at: {{ p.created_at }}</p>
-        <p>Published:{{ p.published }}</p>
-        <p>------------------------</p>
+        <p><a href="{% url 'posts:details' p.id %}">{{ p.title }}</a></p>
     {% endfor %}
 </div>
 <a href="/posts/add"><input type=button value="Add post"></a>
