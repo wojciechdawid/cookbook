@@ -8,6 +8,7 @@ class Post(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
     published = models.BooleanField()
     author = models.ForeignKey("auth.User", on_delete=models.CASCADE)
+    tags = models.ManyToManyField("tags.Tag", related_name="posts")
 
 
 class Comment(models.Model):

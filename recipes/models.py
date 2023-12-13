@@ -37,6 +37,7 @@ class Recipe(models.Model):
         null=True,
         related_name="recipes",
     )
+    tags = models.ManyToManyField("tags.Tag", related_name="recipes")
 
     def __str__(self):
         return f"{self.id}: {self.title}"

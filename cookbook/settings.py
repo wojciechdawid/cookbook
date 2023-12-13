@@ -42,6 +42,8 @@ INSTALLED_APPS = [
     "recipes.apps.RecipesConfig",
     "posts.apps.PostsConfig",
     "accounts.apps.AccountsConfig",
+    "tags.apps.TagsConfig",
+    "problems.apps.ProblemsConfig",
 
 ]
 

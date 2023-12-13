@@ -2,6 +2,7 @@ from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 
+from .forms import PostForm
 from .models import Post, Comment
 from .services import PostService as service
 
@@ -16,22 +17,25 @@ def display_post(request) -> HttpResponse:
 
 @login_required
 def add_post(request) -> HttpResponse:
+
+    form = PostForm()
+
     if request.method == "POST":
-        title = request.POST.get("post_title")
-        content = request.POST.get("post_content")
+        title = request.POST.get("title")
+        content = request.POST.get("content")
         author = request.user
         Post.objects.create(
             title=title,
             content=content,
             author=author,
-            published=bool(request.POST.get("post_published"))
+            published=bool(request.POST.get("published"))
         )
         return redirect("posts:display_post")
 
     return render(
         request,
         "posts/add_post.html",
-        {}
+        {"form": form}
     )
 
 
