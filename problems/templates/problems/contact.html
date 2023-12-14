@@ -13,6 +13,11 @@
     <input type="submit" value="Send">
     </p>
 </form>
+
+{#<h3>Problemy</h3>#}
+{#{% for p in problems %}#}
+{#    <p>{{ p.name }}</p>#}
+{#{% endfor %}#}
 <a href="{% url 'posts:display_post' %}"><input type=button value="Lista postów"></a>
 </body>
 </html>

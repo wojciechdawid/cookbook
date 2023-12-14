@@ -1,20 +1,38 @@
 from django.shortcuts import render
 
-from .forms import ContactForm
+from .forms import ContactForm, ContactForm2
+from .models import Problem
 
 
 def contact(request):
-    form = ContactForm()
     if request.method == "POST":
-        form = ContactForm(data=request.POST)
-        print(form.data)
-        # print(f"Title: {request.POST['title']}\n"
-        #       f"Message: {request.POST['message']}\n"
-        #       f"E-mail: {request.POST['email']}\n"
-        #       f"Telephone: {request.POST['telephone']}\n")
+        form = ContactForm2(data=request.POST)
+        if form.is_valid():
+            # Problem.objects.create(**form.cleaned_data)
+            # print("Created")
+            form.save()
+
+    form = ContactForm2()
     return render(
         request,
         "problems/contact.html",
         {"form": form}
     )
 
+
+def update_problem(request, id: int):
+    pr = Problem.objects.get(id=id)
+
+    if request.method == "POST":
+        form = ContactForm2(instance=pr, data=request.POST)
+        if form.is_valid():
+            form.save()
+            print("Zaktualizowane")
+
+    form = ContactForm2(instance=pr)
+    return render(
+        request,
+        "problems/contact.html",
+        {"form": form,
+         "problems": Problem.objects.all()}
+    )

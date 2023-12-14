@@ -5,5 +5,6 @@ from . import views
 app_name = "problems"
 
 urlpatterns = [
-    path("posts/contact/", views.contact, name="contact"),
+    path("contact/", views.contact, name="contact"),
+    path("contact/<int:id>", views.update_problem, name="update")
 ]
