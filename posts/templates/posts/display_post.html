@@ -1,17 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Posty</title>
-</head>
-<body>
-<div>
+{% extends 'base.html' %}
+
+{% block content %}
 <h4>Lista postów:</h4>
     {% for p in posts %}
         <p><a href="{% url 'posts:details' p.id %}">{{ p.title }}</a></p>
     {% endfor %}
-</div>
 <a href="/posts/add"><input type=button value="Add post"></a>
 <a href="/posts/contact"><input type=button value="Kontakt"></a>
-</body>
-</html>
+{% endblock %}

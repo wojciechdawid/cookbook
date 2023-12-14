@@ -1,6 +1,7 @@
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
+from django.contrib import messages
 
 from .forms import PostForm, PostForm2
 from .models import Post, Comment
@@ -27,6 +28,7 @@ def add_post(request) -> HttpResponse:
             post.author = request.user
             post.published = False
             post.save()
+            messages.add_message(request, messages.INFO, "Post utworzony")
 
 
         # title = request.POST.get("title")
